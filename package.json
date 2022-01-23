@@ -1,0 +1,19 @@
+{
+  "name": "chill-best-bot-ever",
+  "version": "1.0.0",
+  "description": "simple bot for personal use",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "dotenv": "^14.2.0",
+    "telegraf": "^4.6.0"
+  }
+}
