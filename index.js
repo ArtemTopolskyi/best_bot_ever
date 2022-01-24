@@ -11,6 +11,6 @@ bot.start((ctx) => {
 });
 
 bot.command('roll', roll);
-bot.command('truefalse', truefalse);
+bot.command('tf', truefalse);
 
 bot.launch();
