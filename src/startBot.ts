@@ -1,5 +1,5 @@
 import { commands } from '@/commands';
-import { storage } from '@/db/storage';
+import { getStorage } from '@/db/storage';
 import { Telegraf } from 'telegraf';
 
 const startBot = async () => {
@@ -13,7 +13,7 @@ const startBot = async () => {
     bot.command(command.name, command.handler);
   })
 
-  console.log(JSON.stringify(storage.getRooms()));
+  console.log(JSON.stringify(getStorage().getRooms()));
 
   bot.launch()
 
