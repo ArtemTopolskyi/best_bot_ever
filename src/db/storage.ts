@@ -4,8 +4,8 @@ import path from 'path';
 export interface Storage {
   getRoom: (name: string) => Room | null;
   getRooms: () => Room[];
-  addRoom: (name: string) => void;
-  addUserToRoom: (roomName: string, user: User) => void;
+  addRoom: (name: string) => Room;
+  addUserToRoom: (roomName: string, user: string) => void;
   removeUserFromRoom: (roomName: string, userId: string) => void;
 }
 
@@ -14,12 +14,7 @@ interface FileStorage {
 }
 export interface Room {
   name: string;
-  members: User[];
-}
-
-export interface User {
-  id: string;
-  username: string;
+  members: string[];
 }
 
 const STORAGE_FILE_NAME = 'storage.json';
@@ -35,21 +30,26 @@ const addRoom = (name: string) => {
       throw new Error('Room already exists');
     }
 
-    fileStorage.rooms.push({ name, members: [] });
+    const room = { name, members: [] };
+
+    fileStorage.rooms.push(room);
+
     syncStorage();
+
+    return room;
 }
-const addUserToRoom = (roomName: string, user: User) => {
+const addUserToRoom = (roomName: string, username: string) => {
     const room = getRoom(roomName);
     if (room) {
-        room.members.push(user);
+        room.members.push(username);
         syncStorage();
     }
 }
 
-const removeUserFromRoom = (roomName: string, userId: string) => {
+const removeUserFromRoom = (roomName: string, username: string) => {
     const room = getRoom(roomName);
     if (room) {
-        room.members = room.members.filter(user => user.id !== userId);
+        room.members = room.members.filter(user => user !== username);
         syncStorage();
     }
 }

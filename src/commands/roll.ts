@@ -13,6 +13,7 @@ const handler = (ctx: Context) => {
 
 export const rollCommand = makeCommand({
   name: 'roll',
+  description: 'Rolls a number from 1 to 100',
   handler,
 })
 

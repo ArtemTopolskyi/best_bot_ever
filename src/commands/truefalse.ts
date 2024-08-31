@@ -11,5 +11,6 @@ const handler = (ctx: Context) => {
 
 export const tfCommand = makeCommand({
   name: 'tf',
+  description: 'Rolls a true or false',
   handler,
 });
